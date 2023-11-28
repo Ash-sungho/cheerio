@@ -16,14 +16,14 @@ function App() {
       },
     })
       .then((res) => {
-        console.log(res);
-        if (res.ok) {
-          return res.json();
+        console.log("res : ", res);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
         }
-        throw new Error("Network response was not ok.");
+        return res.json();
       })
       .then((resJson) => {
-        console.log(resJson);
+        console.log("resJson : ", resJson);
         setData(resJson);
       })
       .catch((error) => {
